@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { MenuItem } from "../menu-item/menu-item";
 
 export const Directory = () => {
-    const [sections, setSection] = useState([
-        { id: 1, title: "Hat", img: "https://i.ibb.co/cvpntL1/hats.png" },
+    const [sections] = useState([
+        {
+            id: 1,
+            title: "Hat",
+            img: "https://i.ibb.co/cvpntL1/hats.png",
+            url: "/hats",
+        },
         { id: 2, title: "Jacket", img: "https://i.ibb.co/px2tCc3/jackets.png" },
         {
             id: 3,
@@ -25,13 +30,8 @@ export const Directory = () => {
     ]);
     return (
         <div className="directory-menu">
-            {sections.map((section) => (
-                <MenuItem
-                    img={section.img}
-                    key={section.id}
-                    title={section.title.toUpperCase()}
-                    size={section.size}
-                />
+            {sections.map(({ id, ...otherProps }) => (
+                <MenuItem key={id} {...otherProps} />
             ))}
         </div>
     );
